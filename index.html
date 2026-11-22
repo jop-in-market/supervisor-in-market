@@ -1,0 +1,1049 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <!-- إعدادات الترميز والتجاوب الكامل مع الموبايل وجميع الشاشات (Mobile-First) -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اكتشف نوع عقليتك في الشغل (مشرفين وتيم ليدر السوبر ماركت) | jop-in-market</title>
+  <meta name="description" content="اختبار شخصية تفاعلي ممتع باللهجة المصرية من jop-in-market لمشرفين وتيم ليدر السوبر ماركت والهايبر ماركت - اكتشف نوع عقليتك القيادية في الشيفت في أقل من دقيقة!" />
+
+  <!-- تحميل خط Cairo العربي العصري وخط Inter للبراند والأرقام -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- تحميل مكتبة Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- إعدادات Tailwind المخصصة للخطوط والحركات الناعمة -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Cairo', 'Inter', 'sans-serif'],
+            brand: ['Inter', 'Cairo', 'sans-serif'],
+          },
+          keyframes: {
+            fadeSlideUp: {
+              '0%': { opacity: '0', transform: 'translateY(18px) scale(0.98)' },
+              '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+            },
+            fadeOut: {
+              '0%': { opacity: '1', transform: 'translateY(0)' },
+              '100%': { opacity: '0', transform: 'translateY(-10px)' },
+            },
+            floatSlow: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            },
+            pulseGlow: {
+              '0%, 100%': { boxShadow: '0 0 0 0 rgba(37, 99, 235, 0.38)' },
+              '50%': { boxShadow: '0 0 0 12px rgba(37, 99, 235, 0)' },
+            }
+          },
+          animation: {
+            'fade-slide-up': 'fadeSlideUp 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+            'fade-out': 'fadeOut 0.22s ease-in forwards',
+            'float-slow': 'floatSlow 3.5s ease-in-out infinite',
+            'pulse-glow': 'pulseGlow 2.4s infinite',
+          }
+        }
+      }
+    };
+  </script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-blue-50/80 via-white to-orange-50/70 text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-blue-200 selection:text-blue-950">
+
+  <!-- كانفاس القصاصات الاحتفالية (Confetti) يعمل عند ظهور النتيجة فقط بدون إعاقة اللمس -->
+  <canvas id="confetti-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-50 hidden"></canvas>
+
+  <!-- خلفية زخرفية ناعمة مستوحاة من حيوية قطاع التجزئة والسوبر ماركت -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none -z-10" aria-hidden="true">
+    <div class="absolute -top-24 -right-24 w-72 h-72 sm:w-96 sm:h-96 bg-blue-300/25 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 -left-24 w-72 h-72 sm:w-96 sm:h-96 bg-orange-300/25 rounded-full blur-3xl"></div>
+    <div class="absolute -bottom-24 right-1/3 w-72 h-72 bg-amber-300/25 rounded-full blur-3xl"></div>
+  </div>
+
+  <!-- الحاوية الرئيسية للتطبيق -->
+  <div class="min-h-screen flex flex-col justify-between px-4 py-5 sm:py-8">
+
+    <!-- الشريط العلوي للبراند -->
+    <header class="w-full max-w-2xl mx-auto mb-4 sm:mb-6 flex items-center justify-between gap-3">
+      <a href="https://sites.google.com/view/job-in-market" target="_blank" rel="noopener noreferrer"
+         class="inline-flex items-center gap-2.5 bg-white/90 backdrop-blur-md border border-slate-200/80 px-4 py-2 rounded-2xl shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200">
+        <span class="w-8 h-8 rounded-xl bg-gradient-to-tr from-blue-600 via-sky-500 to-orange-500 text-white flex items-center justify-center shadow-sm">
+          <!-- أيقونة السوبر ماركت والقيادة -->
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+        </span>
+        <span class="font-brand font-extrabold text-base sm:text-lg tracking-tight text-slate-900" dir="ltr">jop-in-market</span>
+      </a>
+
+      <!-- شارة المجال -->
+      <div class="inline-flex items-center gap-1.5 text-xs font-bold text-blue-800 bg-blue-100/80 border border-blue-200/70 px-3 sm:px-3.5 py-1.5 rounded-full">
+        <span>🛒</span>
+        <span class="hidden sm:inline">مشرفين وتيم ليدر السوبر ماركت</span>
+        <span class="sm:hidden">مشرفين السوبر ماركت</span>
+      </div>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="w-full max-w-2xl mx-auto my-auto">
+
+      <!-- =========================================================
+           الشاشة 1: شاشة الترحيب (Welcome Screen)
+      ========================================================== -->
+      <section id="welcome-screen" class="bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-3xl shadow-xl shadow-blue-900/5 p-6 sm:p-10 text-center animate-fade-slide-up">
+
+        <!-- أيقونة رئيسية متحركة -->
+        <div class="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-5 rounded-3xl bg-gradient-to-br from-blue-600 via-sky-500 to-orange-500 p-0.5 shadow-lg shadow-blue-500/25 animate-float-slow">
+          <div class="w-full h-full bg-white rounded-[22px] flex items-center justify-center text-4xl sm:text-5xl">
+            🛒
+          </div>
+        </div>
+
+        <!-- شارة سريعة -->
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-orange-50 border border-orange-200/80 text-orange-800 text-xs sm:text-sm font-bold mb-4">
+          <span>🔥</span>
+          <span>اختبار قادة الفروع ومشرفين وتيم ليدر السوبر ماركت</span>
+        </div>
+
+        <!-- عنوان الاختبار -->
+        <h1 class="text-2xl sm:text-4xl font-black text-slate-900 leading-tight mb-4">
+          اكتشف نوع عقليتك في الشغل <span class="inline-block">🚀</span>
+        </h1>
+
+        <!-- نبذة مشوقة في سطرين -->
+        <p class="text-slate-600 text-base sm:text-lg leading-relaxed max-w-xl mx-auto mb-7 font-medium">
+          7 مواقف حقيقية من زحمة الشيفت، جرد الهالك، وزيارات التفتيش المفاجئة هتكشف إنت مين جوه الفرع: مهندس الـ SOP، القائد الكوتش، أسد الأرض، ولا مايسترو البيع والعروض؟
+          جاوب بصراحة في أقل من دقيقة واعرف لقبك القيادي الحقيقي!
+        </p>
+
+        <!-- بطاقات معلومات سريعة -->
+        <div class="grid grid-cols-3 gap-2.5 sm:gap-4 max-w-md mx-auto mb-8">
+          <div class="bg-slate-50 border border-slate-200/70 rounded-2xl p-3 flex flex-col items-center justify-center gap-1">
+            <span class="text-xl">⏱️</span>
+            <span class="text-xs sm:text-sm font-bold text-slate-700">أقل من دقيقة</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/70 rounded-2xl p-3 flex flex-col items-center justify-center gap-1">
+            <span class="text-xl">🎯</span>
+            <span class="text-xs sm:text-sm font-bold text-slate-700">7 مواقف</span>
+          </div>
+          <div class="bg-slate-50 border border-slate-200/70 rounded-2xl p-3 flex flex-col items-center justify-center gap-1">
+            <span class="text-xl">🏆</span>
+            <span class="text-xs sm:text-sm font-bold text-slate-700">4 عقليات</span>
+          </div>
+        </div>
+
+        <!-- زر بدء الاختبار الكبير -->
+        <button id="start-quiz-btn" type="button"
+                class="w-full sm:w-auto min-w-[260px] inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-l from-blue-600 via-sky-600 to-indigo-600 hover:from-blue-700 hover:via-sky-700 hover:to-indigo-700 text-white font-extrabold text-lg sm:text-xl shadow-lg shadow-blue-600/30 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 animate-pulse-glow cursor-pointer">
+          <span>ابدأ الاختبار الآن 🚀</span>
+        </button>
+
+        <p class="mt-4 text-xs text-slate-400 font-semibold">
+          بدون تسجيل • مجاني 100% • نتيجة فورية جاهزة للمشاركة
+        </p>
+      </section>
+
+      <!-- =========================================================
+           الشاشة 2: شاشة الأسئلة (Quiz Screen)
+      ========================================================== -->
+      <section id="quiz-screen" class="hidden bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-3xl shadow-xl shadow-blue-900/5 p-5 sm:p-8">
+
+        <!-- شريط التقدم العلوي -->
+        <div class="mb-6">
+          <div class="flex items-center justify-between text-sm font-bold mb-2.5">
+            <span id="question-counter" class="text-blue-800 bg-blue-50 px-3 py-1 rounded-xl border border-blue-100">
+              السؤال 1 من 7
+            </span>
+            <span id="progress-percent" class="text-slate-500 font-brand font-bold text-xs sm:text-sm">
+              14%
+            </span>
+          </div>
+          <!-- المسار والشريط المتحرك بنعومة -->
+          <div class="w-full h-3 bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/70">
+            <div id="progress-bar"
+                 class="h-full rounded-full bg-gradient-to-l from-orange-400 via-sky-500 to-blue-600 transition-all duration-500 ease-out"
+                 style="width: 14.28%;">
+            </div>
+          </div>
+        </div>
+
+        <!-- حاوية السؤال والاختيارات مع تأثيرات الانتقال -->
+        <div id="question-container" class="animate-fade-slide-up">
+          <div class="mb-6">
+            <span id="question-badge" class="inline-block text-xs font-extrabold text-orange-700 bg-orange-50 border border-orange-200/70 px-3 py-1 rounded-full mb-3">
+              موقف من قلب الشيفت
+            </span>
+            <h2 id="question-text" class="text-lg sm:text-2xl font-extrabold text-slate-900 leading-relaxed">
+              <!-- يتم حقن نص السؤال هنا -->
+            </h2>
+          </div>
+
+          <!-- قائمة الاختيارات (أ، ب، ج، د) -->
+          <div id="options-list" class="space-y-3" role="radiogroup" aria-label="اختيارات الإجابة">
+            <!-- يتم توليد الاختيارات برمجياً -->
+          </div>
+        </div>
+
+        <!-- شريط التنقل السفلي -->
+        <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+          <button id="prev-btn" type="button"
+                  class="hidden inline-flex items-center gap-1.5 text-sm font-bold text-slate-500 hover:text-blue-700 px-3 py-2 rounded-xl hover:bg-slate-100 transition-colors cursor-pointer">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+            <span>السؤال السابق</span>
+          </button>
+          <span class="text-xs text-slate-400 font-semibold mr-auto">اختار التصرف اللي بتعمله فعلاً جوه الفرع 😉</span>
+        </div>
+      </section>
+
+      <!-- =========================================================
+           الشاشة 2.5: شاشة التحليل التشويقية (Analyzing Screen)
+      ========================================================== -->
+      <section id="analyzing-screen" class="hidden bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-3xl shadow-xl shadow-blue-900/5 p-10 text-center animate-fade-slide-up">
+        <div class="w-16 h-16 mx-auto mb-5 rounded-full border-4 border-blue-100 border-t-blue-600 animate-spin"></div>
+        <h2 class="text-xl sm:text-2xl font-black text-slate-900 mb-2">
+          بنحلل أسلوبك في إدارة الشيفت والفريق... 🛒
+        </h2>
+        <p class="text-slate-500 text-sm sm:text-base font-medium">
+          لحظة واحدة وهتعرف لقبك الحقيقي وسط مشرفين وقادة الفروع!
+        </p>
+      </section>
+
+      <!-- =========================================================
+           الشاشة 3: شاشة النتيجة النهائية (Result Screen)
+      ========================================================== -->
+      <section id="result-screen" class="hidden space-y-5 animate-fade-slide-up">
+
+        <!-- بطاقة النتيجة الرئيسية -->
+        <div class="bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-3xl shadow-xl shadow-blue-900/5 overflow-hidden">
+
+          <!-- رأس النتيجة المتدرج حسب العقلية -->
+          <div id="result-header" class="p-6 sm:p-8 text-center text-white bg-gradient-to-br from-blue-600 to-indigo-600 relative overflow-hidden">
+            <div class="absolute -top-12 -left-12 w-36 h-36 bg-white/15 rounded-full blur-xl pointer-events-none"></div>
+            <div class="absolute -bottom-12 -right-12 w-40 h-40 bg-black/10 rounded-full blur-xl pointer-events-none"></div>
+
+            <div class="relative z-10">
+              <span class="inline-block px-4 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs sm:text-sm font-bold mb-4">
+                نتيجتك من jop-in-market ✨
+              </span>
+
+              <!-- إيموجي اللقب -->
+              <div id="result-emoji" class="text-5xl sm:text-6xl mb-3 drop-shadow-sm">📋📊</div>
+
+              <!-- اللقب بخط كبير ومميز -->
+              <h2 id="result-title" class="text-2xl sm:text-4xl font-black tracking-tight mb-1.5 drop-shadow-sm">
+                مهندس التشغيل والـ SOP
+              </h2>
+              <p id="result-subtitle" class="text-white/95 text-base sm:text-lg font-bold">
+                (مايسترو النظام والـ Zero Waste)
+              </p>
+            </div>
+          </div>
+
+          <!-- تفاصيل النتيجة -->
+          <div class="p-5 sm:p-8 space-y-6">
+
+            <!-- الوصف النفسي ونقاط القوة -->
+            <div class="bg-slate-50/90 border border-slate-200/70 rounded-2xl p-5">
+              <h3 class="flex items-center gap-2 text-base sm:text-lg font-extrabold text-slate-900 mb-2.5">
+                <span>💪</span>
+                <span>عقليتك ونقاط قوتك في إدارة الفرع والشيفت:</span>
+              </h3>
+              <p id="result-description" class="text-slate-700 text-sm sm:text-base leading-loose font-medium">
+                <!-- يتم حقن الوصف هنا -->
+              </p>
+            </div>
+
+            <!-- نصيحة سريعة -->
+            <div class="bg-amber-50/90 border border-amber-200/80 rounded-2xl p-5">
+              <h3 class="flex items-center gap-2 text-base sm:text-lg font-extrabold text-amber-900 mb-2">
+                <span>💡</span>
+                <span>نصيحة سريعة تقرّبك للترقية الجاية:</span>
+              </h3>
+              <p id="result-tip" class="text-amber-900/90 text-sm sm:text-base leading-relaxed font-semibold">
+                <!-- يتم حقن النصيحة هنا -->
+              </p>
+            </div>
+
+            <!-- نسب العقليات الأربع داخل إجابات المستخدم -->
+            <div class="bg-white border border-slate-200/80 rounded-2xl p-5">
+              <h3 class="text-sm sm:text-base font-extrabold text-slate-800 mb-4 flex items-center gap-2">
+                <span>📊</span>
+                <span>تركيبة عقليتك القيادية حسب إجاباتك:</span>
+              </h3>
+              <div id="traits-breakdown" class="space-y-3">
+                <!-- يتم حقن الأشرطة برمجياً -->
+              </div>
+            </div>
+
+            <!-- أزرار المشاركة الفورية + زر المزيد من الاختبارات -->
+            <div class="pt-3 border-t border-slate-100 space-y-3">
+              <div class="text-center mb-3">
+                <p class="text-sm sm:text-base font-extrabold text-slate-800 mb-1">
+                  شارك نتيجتك وتحدى مشرفين الفروع والتيم بتاعك! 🔥
+                </p>
+                <p class="text-xs sm:text-sm text-slate-500 font-medium">
+                  ابعته على جروب المشرفين أو لزمايلك في الفرع وشوف مين "أسد الأرض" ومين "القائد الكوتش" 😂👇
+                </p>
+              </div>
+
+              <!-- زر واتساب (أخضر) وزر فيسبوك (أزرق) -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <button id="whatsapp-share-btn" type="button"
+                        class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-[#25D366] hover:bg-[#1ebe5d] active:scale-[0.98] text-white font-extrabold text-sm sm:text-base shadow-md shadow-emerald-500/25 transition-all duration-200 cursor-pointer">
+                  <span>شارك نتيجتك على واتساب 📲</span>
+                </button>
+
+                <button id="facebook-copy-btn" type="button"
+                        class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-[#1877F2] hover:bg-[#1465d1] active:scale-[0.98] text-white font-extrabold text-sm sm:text-base shadow-md shadow-blue-500/25 transition-all duration-200 cursor-pointer">
+                  <span>انسخ النتيجة والرابط لنشرها على فيسبوك 📋</span>
+                </button>
+              </div>
+
+              <!-- زر لمزيد من الاختبارات يفتح رابط الموقع مباشرة -->
+              <a href="https://sites.google.com/view/job-in-market" target="_blank" rel="noopener noreferrer"
+                 class="w-full inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-2xl bg-gradient-to-l from-blue-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 active:scale-[0.98] text-white font-extrabold text-sm sm:text-base shadow-md shadow-blue-500/25 transition-all duration-200">
+                <span>لمزيد من الاختبارات الممتعة 🎯</span>
+                <svg class="w-4 h-4 rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- =========================================================
+             صندوق الدعوة لاتخاذ إجراء (CTA Box) الخاص بخدمات jop-in-market
+        ========================================================== -->
+        <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 text-white p-6 sm:p-8 shadow-xl border border-blue-500/30">
+          <!-- إضاءات خلفية ناعمة -->
+          <div class="absolute -top-16 -left-16 w-48 h-48 bg-orange-400/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-16 -right-16 w-48 h-48 bg-sky-500/25 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-right">
+            <div class="space-y-2.5">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-400/20 border border-sky-300/30 text-sky-300 text-xs font-extrabold">
+                <span>🎁</span>
+                <span>أدوات وخدمات مجانية من jop-in-market</span>
+              </span>
+              <h3 class="text-lg sm:text-2xl font-black leading-snug text-white">
+                تقدر تحسب صافي مرتبك وتكلفه الساعه وتراجع علي الcv وخدمات كتير
+              </h3>
+              <p class="text-slate-300 text-xs sm:text-sm font-medium">
+                أدوات عملية ذكية تساعدك تطوّر مستقبلك المهني وتعرف قيمتك الحقيقية في سوق العمل بضغطة زر.
+              </p>
+            </div>
+
+            <a href="https://sites.google.com/view/job-in-market" target="_blank" rel="noopener noreferrer"
+               class="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-4 rounded-2xl bg-gradient-to-l from-amber-400 to-orange-400 hover:from-amber-300 hover:to-orange-300 text-slate-950 font-black text-sm sm:text-base shadow-lg shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200">
+              <span>ادخل على الأدوات الآن</span>
+              <svg class="w-5 h-5 rotate-180" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- زر إعادة الاختبار -->
+        <div class="text-center pt-1">
+          <button id="retake-quiz-btn" type="button"
+                  class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white/90 hover:bg-white border border-slate-200 text-slate-700 hover:text-blue-700 font-bold text-sm shadow-sm hover:shadow transition-all duration-200 cursor-pointer">
+            <span>إعادة الاختبار مرة أخرى 🔄</span>
+          </button>
+        </div>
+
+      </section>
+    </main>
+
+    <!-- تذييل الصفحة -->
+    <footer class="w-full max-w-2xl mx-auto mt-6 text-center text-xs text-slate-500 font-semibold">
+      صُمم بحب لجمهور <span class="font-brand font-bold text-blue-700" dir="ltr">jop-in-market</span> • اختبر نفسك وشارك نتيجتك 🛒🚀
+    </footer>
+  </div>
+
+  <!-- =========================================================
+       إشعار منبثق أنيق (Toast Notification) بدلاً من alert()
+  ========================================================== -->
+  <div id="toast-box"
+       role="status"
+       aria-live="polite"
+       class="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 pointer-events-none opacity-0 translate-y-4 transition-all duration-300 w-[90%] max-w-sm">
+    <div id="toast-content"
+         class="bg-slate-900 text-white px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-700 flex items-center justify-center gap-2.5 text-sm font-bold text-center">
+      <span id="toast-icon">✅</span>
+      <span id="toast-message">تم النسخ بنجاح!</span>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       المنطق البرمجي الكامل للاختبار (JavaScript)
+  ========================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // ---------------------------------------------------------
+      // 1. بيانات الأسئلة الـ 7 الخاصة بمشرفين وتيم ليدر السوبر ماركت
+      // ---------------------------------------------------------
+      const QUIZ_QUESTIONS = [
+        {
+          id: 1,
+          badge: 'طوارئ الشيفت والغياب 🚨',
+          text: 'يوم خميس بالليل والفرع "مضروب بالنار" وزحمة، وفجأة اتنين كاشيرات أو اتنين من فريق الممرات اعتذروا قبل الشيفت بساعة.. أول حاجة بتعملها إيه؟',
+          options: [
+            { type: 'أ', text: 'بفتح جدول الشيفتات (Roster) فوراً وأعيد توزيع الفريق على نقاط الاختناق حسب الأولوية عشان الشغل ما يقفش ولا دقيقة.' },
+            { type: 'ب', text: 'بجمع الشباب الموجودين وأحمسهم بكلمتين حلوين وأقدّر تعبهم، وأرتبلهم تعويض أو مكافأة عشان يشيلوا الليلة بنفس راضية.' },
+            { type: 'ج', text: 'بقف أنا بنفسي على الكاشير أو بنزل أرص في الممر مع الشباب.. التيم ليدر وقت الزنقة بيبقى في الصف الأول مش في المكتب!' },
+            { type: 'د', text: 'بشغّل دماغي: بفتح كاشير سريع (Express) للطلبات الخفيفة وبنقل أصناف السحب العالي في الواجهة عشان الطوابير تتحرك والبيع يزيد!' }
+          ]
+        },
+        {
+          id: 2,
+          badge: 'أزمة عميل عند الكاشير 🔥',
+          text: 'عميل واقف عند الكاشير بيزعق عشان السعر على الرف غير السعر على السيستم، والطابور وراه بدأ يتوتر.. بتدخل تحل الموقف إزاي؟',
+          options: [
+            { type: 'أ', text: 'براجع السيستم وتاريخ تعديل السعر فوراً وأطبّق سياسة الفرع بدقة، وأسجّل المشكلة عشان نراجع كل الـ Price Tags وما تتكررش.' },
+            { type: 'ب', text: 'بسحب العميل على جنب بابتسامة وهدوء، أمتص غضبه وأعتذرله بشياكة وأحسسه إنه صاحب مكان لحد ما يمشي وهو راضي وبيضحك.' },
+            { type: 'ج', text: 'بنزل بنفسي في ثواني أجيب كارت السعر من على الرف وأخلّص الفاتورة فوراً عشان الطابور يتحرك وما نعطلش باقي الزباين.' },
+            { type: 'د', text: 'بحلله فرق السعر حسب السياسة وبعرّفه على عرض ترويجي جامد شغال النهاردة في الفرع، فيخرج مبسوط ومشتري أكتر كمان!' }
+          ]
+        },
+        {
+          id: 3,
+          badge: 'تحدي الهالك والصلاحية ⏳',
+          text: 'في جرد الصبح اكتشفت كمية كبيرة من منتجات الألبان أو المخبوزات قربت على تاريخ الانتهاء (Near Expiry) وممكن تدخل في الهالك.. قرارك السريع إيه؟',
+          options: [
+            { type: 'أ', text: 'براجع أرقام الطلبيات ومعدل السحب (Reorder Point) فوراً عشان أعرف ليه الكمية زادت وأمنع تكرار الخسارة في الطلبية الجاية.' },
+            { type: 'ب', text: 'بقعد مع مشرف القسم والشباب نفهم إيه اللي حصل من غير زعيق، وأدربهم تاني على نظام الـ FIFO عشان يركزوا أكتر المرة الجاية.' },
+            { type: 'ج', text: 'بنزل بإيدي أفرز التلاجة مع الفريق ونطلع التواريخ القريبة قدام فوراً، ونتواصل مع أقرب فرع سحبه عالي ننقل له جزء لو متاح.' },
+            { type: 'د', text: 'بعملها "ركن عروض اليوم" (Hot Offer) أو Bundle مع منتج تاني جنب المدخل بسعر مغري عشان تتباع كلها قبل نهاية الشيفت!' }
+          ]
+        },
+        {
+          id: 4,
+          badge: 'زيارة التفتيش المفاجئة 🕵️‍♂️',
+          text: 'جالك تليفون بيقولك: "مدير التشغيل أو التفتيش والجودة جاي زيارة مفاجئة للفرع كمان ساعة!".. أول تصرف ليك إيه؟',
+          options: [
+            { type: 'أ', text: 'أنا أصلاً مطمن! عندي Checklist يومية متطبقة من أول الشيفت على النظافة، درجات حرارة التلاجات، والأسعار.. هراجع الأوراق بسرعة بس.' },
+            { type: 'ب', text: 'بعمل Briefing سريع للتيم في دقيقتين أرفع معنوياتهم وأوزع المهام بابتسامة عشان محدش يتوتر وكل واحد يطلع أحسن ما عنده.' },
+            { type: 'ج', text: 'بلف الفرع كله جري من المخزن للثلاجات للممرات، وأي كرتونة في الأرض أو رف ناقص بنقفله بإيدينا في ربع ساعة!' },
+            { type: 'د', text: 'بركز إن واجهة الفرع ومنطقة العروض (End Caps) والفاكهة والخضار يكون شكلهم "لوحة فنية" تخطف عين الإدارة من أول خطوة!' }
+          ]
+        },
+        {
+          id: 5,
+          badge: 'خناقة وسط الفريق 🤝',
+          text: 'اتنين من الشباب في التيم بتاعك (مثلاً مسؤول المخزن ومسؤول الممرات) اتخانقوا قدام البضاعة وكل واحد بيرمي اللوم على التاني.. بتتصرف إزاي؟',
+          options: [
+            { type: 'أ', text: 'بوقف النقاش فوراً وأرجع لتوصيف الشغل (Job Description) وسجل الاستلام عشان نعرف فين الغلطة بالظبط وبحيادية تامة.' },
+            { type: 'ب', text: 'بدخلهم المكتب أسمع كل واحد لوحده بهدوء، وأصالحهم على بعض وأفكرهم إننا فريق واحد والزعل بيأثر على شغلنا كلنا.' },
+            { type: 'ج', text: 'بقولهم بحسم: "اركنوا الخلاف دلوقتي عشان المحل مليان زباين، نخلص الزحمة والشغل اللي واقف الأول وبعد الشيفت نتحاسب!".' },
+            { type: 'د', text: 'بحول التنافس بينهم لتحدي إيجابي! بخلي كل واحد مسؤول عن هدف واضح النهاردة ونعمل مسابقة مين هينجز أسرع وأحسن.' }
+          ]
+        },
+        {
+          id: 6,
+          badge: 'لحظة الفخر بعد الشيفت 🏆',
+          text: 'إمتى بتروّح بيتك بعد شيفت طويل وإنت حاسس إنك "عملت الصح" وفخور بنفسك وبفريقك؟',
+          options: [
+            { type: 'أ', text: 'لما تقفل الشيفت والتارجت محقق، ونسبة الهالك والعجز في الكاشير "صفر"، والتقارير كلها متسلمة بالملّي.' },
+            { type: 'ب', text: 'لما تلاقي شاب جديد إنت دربته بقى شاطر ومعتمد على نفسه، والفريق كله بيحب يشتغل في شيفتك إنت بالذات.' },
+            { type: 'ج', text: 'لما يوم زحمة وموسم (زي أول الشهر أو رمضان) يعدي بسلام، والرفوف مليانة على آخرها والزباين خارجة مبسوطة.' },
+            { type: 'د', text: 'لما عرض إنت اقترحته أو طريقة رص جديدة (Display) تخلي مبيعات الفرع تنط وتكسر الرقم القياسي!' }
+          ]
+        },
+        {
+          id: 7,
+          badge: 'سمعتك في البريك ☕',
+          text: 'لو الشباب في الفرع قاعدين في البريك بيتكلموا عنك في ضهرك.. تفتكر هيقولوا عليك إيه؟',
+          options: [
+            { type: 'أ', text: '"ده الفرع معاه ماشي بالمسطرة.. مفيش غلطة سعر ولا تاريخ صلاحية ولا بند جودة بيفوتوا منه".' },
+            { type: 'ب', text: '"ده أحسن تيم ليدر اشتغلنا معاه.. بيقف في ضهرنا، بيفهمنا، وبيخليك تحب تنزل الشيفت".' },
+            { type: 'ج', text: '"ده الجوكر بتاع الفرع.. عمره ما بيقعد في المكتب، إيده بإيدنا في كل زنقة وشايل الفرع على كتافه".' },
+            { type: 'د', text: '"ده دماغه سمّ في البيع والعروض.. دايماً بيطلع بفكرة تخلي الزبون يدخل ياخد حاجة يخرج بعربية مليانة!".' }
+          ]
+        }
+      ];
+
+      // ---------------------------------------------------------
+      // 2. بيانات النتائج النهائية الـ 4
+      // ---------------------------------------------------------
+      const QUIZ_RESULTS = {
+        'أ': {
+          key: 'أ',
+          title: 'مهندس التشغيل والـ SOP',
+          subtitle: '(مايسترو النظام والـ Zero Waste)',
+          shareTitle: 'مهندس التشغيل والـ SOP - مايسترو النظام 📋📊',
+          emoji: '📋📊',
+          headerGradient: 'from-blue-600 via-indigo-600 to-slate-800',
+          barColor: 'bg-blue-600',
+          shortLabel: 'مهندس التشغيل (نظام وجودة وSOP)',
+          description: 'إنت العمود اللي بيخلي الفرع ماشي زي "الساعة السويسرية"! عينك بتلقط أدق التفاصيل: تواريخ الصلاحية، أسعار الـ Price Tags، نسب الهالك، وجرد المخزون. الإدارة العليا بتثق فيك ثقة عمياء لأن أرقامك دايماً مظبوطة، زيارات التفتيش بتعدي معاك بامتياز، وشيفتك مفيهوش عشوائية ولا مفاجآت وحشة.',
+          tip: 'النظام والـ Checklist هما سر تميزك، بس افتكر إن التيم اللي شغال معاك بشر مش مكن! ضيف شوية مرونة وتشجيع شخصي للشباب وسط اليوم وهتشوفهم بيطلعوا ضعف طاقتهم معاك.'
+        },
+        'ب': {
+          key: 'ب',
+          title: 'القائد الكوتش',
+          subtitle: '(سند التيم وساحر خدمة العملاء)',
+          shareTitle: 'القائد الكوتش - سند التيم وساحر العملاء 🤝❤️',
+          emoji: '🤝❤️',
+          headerGradient: 'from-emerald-600 via-teal-600 to-cyan-700',
+          barColor: 'bg-emerald-600',
+          shortLabel: 'القائد الكوتش (قيادة إنسانية وخدمة عملاء)',
+          description: 'إنت الروح اللي بتخلي أي سوبر ماركت مكان مبهج للشغل والتسوق! قوتك الخارقة في الذكاء العاطفي: الشباب بيحبوا ينزلوا في شيفتك لأنك بتسمعهم وبتقف في ضهرهم وبتعرف تطوّرهم، والعملاء الغاضبين بيهدوا من أول ما يشوفوا ابتسامتك. إنت بتبني فريق مخلص بيخلي نسبة دوران العمالة (Turnover) عندك أقل ما يمكن.',
+          tip: 'طيبتك واحتوائك للفريق ميزة نادرة، بس وقت التقصير المتكرر أو مخالفة قواعد الجودة، الحزم اللطيف والواضح ضروري عشان تحافظ على عدالة الشغل ومستوى الفرع.'
+        },
+        'ج': {
+          key: 'ج',
+          title: 'أسد الأرض والشيفت',
+          subtitle: '(الجوكر وبطل أيام الزحمة)',
+          shareTitle: 'أسد الأرض والشيفت - الجوكر وبطل الزحمة ⚡🛒',
+          emoji: '⚡🛒',
+          headerGradient: 'from-orange-500 via-amber-600 to-red-600',
+          barColor: 'bg-orange-500',
+          shortLabel: 'أسد الأرض (تنفيذ ميداني وقيادة بالقدوة)',
+          description: 'إنت القائد اللي بيقود بالقدوة (Lead by Example)! عمرك ما بتتأمر من ورا مكتب؛ وقت الزحمة أو الغياب بتكون أول واحد واقف على الكاشير، بترص في الممرات، أو بتفرّغ عربية البضاعة مع الشباب. أعصابك من حديد في المواسم والأعياد، والكل عارف إن طالما إنت موجود في الشيفت، الفرع في أمان!',
+          tip: 'شجاعتك وشيلك للشغل بإيدك بيكسبك احترام الكل، بس عشان تكبر لمنصب مدير فرع أو مدير منطقة، اتعلم تفوّض الشغل اليدوي لفريقك وركّز أكتر على التوجيه والمتابعة الشاملة!'
+        },
+        'د': {
+          key: 'د',
+          title: 'مايسترو البيع والعروض',
+          subtitle: '(عبقري الـ Display وتكبير سلة العميل)',
+          shareTitle: 'مايسترو البيع والعروض - عبقري الـ Display 🔥💡',
+          emoji: '🔥💡',
+          headerGradient: 'from-purple-600 via-fuchsia-600 to-rose-600',
+          barColor: 'bg-purple-600',
+          shortLabel: 'مايسترو البيع (عروض وDisplay وتارجت)',
+          description: 'إنت عندك "عين بيّاع" من طراز رفيع! بتشوف السوبر ماركت كلوحة تسويقية مش مجرد رفوف: تعرف إزاي تحط الصنف جنب الصنف (Cross-Selling)، وإزاي تحول بضاعة بطيئة الحركة أو قربت تنتهي لـ "عرض اليوم" اللي الناس تتخاطف عليه. إنت السبب إن متوسط فاتورة العميل (Average Basket) ومبيعات الفرع دايماً في العالي!',
+          tip: 'أفكارك البيعية دهب وبتعلي تارجت الفرع، بس اربطها دايماً بمراجعة الهوامش وتوافر المخزون (Stock) عشان أي عرض تعمله ينجح من غير ما البضاعة تخلص في نص اليوم!'
+        }
+      };
+
+      const DISPLAY_LETTERS = ['أ', 'ب', 'ج', 'د'];
+      const FALLBACK_SITE_URL = 'https://sites.google.com/view/job-in-market';
+
+      // ---------------------------------------------------------
+      // 3. حالة التطبيق (Application State)
+      // ---------------------------------------------------------
+      let currentQuestionIndex = 0;
+      let userAnswers = [];
+      let shuffledQuestions = [];
+      let currentResult = null;
+      let isTransitioning = false;
+      let toastTimeout = null;
+
+      // ---------------------------------------------------------
+      // 4. ربط عناصر واجهة المستخدم (DOM Elements)
+      // ---------------------------------------------------------
+      const welcomeScreen = document.getElementById('welcome-screen');
+      const quizScreen = document.getElementById('quiz-screen');
+      const analyzingScreen = document.getElementById('analyzing-screen');
+      const resultScreen = document.getElementById('result-screen');
+
+      const startQuizBtn = document.getElementById('start-quiz-btn');
+      const prevBtn = document.getElementById('prev-btn');
+      const retakeQuizBtn = document.getElementById('retake-quiz-btn');
+
+      const questionCounterEl = document.getElementById('question-counter');
+      const progressPercentEl = document.getElementById('progress-percent');
+      const progressBarEl = document.getElementById('progress-bar');
+      const questionContainerEl = document.getElementById('question-container');
+      const questionBadgeEl = document.getElementById('question-badge');
+      const questionTextEl = document.getElementById('question-text');
+      const optionsListEl = document.getElementById('options-list');
+
+      const resultHeaderEl = document.getElementById('result-header');
+      const resultEmojiEl = document.getElementById('result-emoji');
+      const resultTitleEl = document.getElementById('result-title');
+      const resultSubtitleEl = document.getElementById('result-subtitle');
+      const resultDescriptionEl = document.getElementById('result-description');
+      const resultTipEl = document.getElementById('result-tip');
+      const traitsBreakdownEl = document.getElementById('traits-breakdown');
+
+      const whatsappShareBtn = document.getElementById('whatsapp-share-btn');
+      const facebookCopyBtn = document.getElementById('facebook-copy-btn');
+
+      const toastBox = document.getElementById('toast-box');
+      const toastIcon = document.getElementById('toast-icon');
+      const toastMessage = document.getElementById('toast-message');
+      const confettiCanvas = document.getElementById('confetti-canvas');
+
+      // ---------------------------------------------------------
+      // 5. الدوال المساعدة (Utilities)
+      // ---------------------------------------------------------
+
+      /**
+       * خلط مصفوفة عشوائياً بخوارزمية Fisher-Yates
+       * حتى لا يتوقع المستخدم النمط وتكون إجاباته عفوية وصادقة
+       */
+      function shuffleArray(array) {
+        const copy = array.slice();
+        for (let i = copy.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = copy[i];
+          copy[i] = copy[j];
+          copy[j] = temp;
+        }
+        return copy;
+      }
+
+      /**
+       * عرض إشعار منبثق (Toast) أنيق بدلاً من alert()
+       */
+      function showToast(message, icon = '✅') {
+        try {
+          if (toastTimeout) clearTimeout(toastTimeout);
+          toastIcon.textContent = icon;
+          toastMessage.textContent = message;
+
+          toastBox.classList.remove('opacity-0', 'translate-y-4');
+          toastBox.classList.add('opacity-100', 'translate-y-0');
+
+          toastTimeout = setTimeout(() => {
+            toastBox.classList.remove('opacity-100', 'translate-y-0');
+            toastBox.classList.add('opacity-0', 'translate-y-4');
+          }, 3200);
+        } catch (err) {
+          console.error('Toast error:', err);
+        }
+      }
+
+      /**
+       * الحصول على رابط الصفحة الحالي بشكل آمن للمشاركة
+       * وفي حال التشغيل المحلي أو داخل معاينة iFrame يتم استخدام رابط الموقع الرسمي
+       */
+      function getShareableUrl() {
+        try {
+          const href = window.location.href || '';
+          if (href.startsWith('http://') || href.startsWith('https://')) {
+            if (!href.includes('localhost') && !href.includes('127.0.0.1') && !href.includes('usercontent')) {
+              return href;
+            }
+          }
+          return FALLBACK_SITE_URL;
+        } catch (err) {
+          return FALLBACK_SITE_URL;
+        }
+      }
+
+      /**
+       * بناء نص المشاركة بالصيغة المطلوبة تماماً
+       */
+      function buildShareText(result) {
+        const pageUrl = getShareableUrl();
+        return `نتيجتي في اختبار [شخصيتي في الشغل] طلعت (${result.shareTitle})! جرب وشوف نتيجتك من هنا 👇\n${pageUrl}`;
+      }
+
+      /**
+       * نسخ النص للحافظة باستخدام document.execCommand('copy')
+       * لضمان العمل الموثوق داخل iFrame والمتصفحات المختلفة
+       */
+      function copyTextToClipboard(text) {
+        try {
+          const textArea = document.createElement('textarea');
+          textArea.value = text;
+          textArea.setAttribute('readonly', '');
+          textArea.style.position = 'fixed';
+          textArea.style.top = '-9999px';
+          textArea.style.left = '-9999px';
+          document.body.appendChild(textArea);
+
+          textArea.focus();
+          textArea.select();
+          textArea.setSelectionRange(0, textArea.value.length);
+
+          const successful = document.execCommand('copy');
+          document.body.removeChild(textArea);
+          return successful;
+        } catch (err) {
+          console.error('Clipboard copy failed:', err);
+          return false;
+        }
+      }
+
+      // ---------------------------------------------------------
+      // 6. منطق تشغيل الاختبار وعرض الأسئلة
+      // ---------------------------------------------------------
+
+      /**
+       * بدء الاختبار أو إعادته من البداية
+       */
+      function startQuiz() {
+        try {
+          currentQuestionIndex = 0;
+          userAnswers = new Array(QUIZ_QUESTIONS.length).fill(null);
+          currentResult = null;
+          isTransitioning = false;
+
+          // خلط الاختيارات داخل كل سؤال مع الحفاظ على الحرف المرتبط بالنتيجة
+          shuffledQuestions = QUIZ_QUESTIONS.map((q) => ({
+            ...q,
+            options: shuffleArray(q.options)
+          }));
+
+          welcomeScreen.classList.add('hidden');
+          resultScreen.classList.add('hidden');
+          analyzingScreen.classList.add('hidden');
+          quizScreen.classList.remove('hidden');
+
+          renderQuestion();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch (err) {
+          console.error('Error starting quiz:', err);
+          showToast('حدث خطأ بسيط، جرب تبدأ تاني.', '⚠️');
+        }
+      }
+
+      /**
+       * عرض السؤال الحالي وتحديث شريط التقدم
+       */
+      function renderQuestion() {
+        const question = shuffledQuestions[currentQuestionIndex];
+        const total = shuffledQuestions.length;
+        const stepNumber = currentQuestionIndex + 1;
+        const progressPercent = Math.round((stepNumber / total) * 100);
+
+        // تحديث شريط التقدم والعداد
+        questionCounterEl.textContent = `السؤال ${stepNumber} من ${total}`;
+        progressPercentEl.textContent = `${progressPercent}%`;
+        progressBarEl.style.width = `${(stepNumber / total) * 100}%`;
+
+        // إظهار أو إخفاء زر الرجوع للسؤال السابق
+        if (currentQuestionIndex > 0) {
+          prevBtn.classList.remove('hidden');
+        } else {
+          prevBtn.classList.add('hidden');
+        }
+
+        // إعادة تفعيل حركة دخول السؤال بنعومة
+        questionContainerEl.classList.remove('animate-fade-slide-up', 'animate-fade-out');
+        void questionContainerEl.offsetWidth;
+        questionContainerEl.classList.add('animate-fade-slide-up');
+
+        // تحديث النصوص
+        questionBadgeEl.textContent = question.badge;
+        questionTextEl.textContent = question.text;
+
+        // بناء أزرار الاختيارات الأربعة
+        optionsListEl.innerHTML = '';
+        const previousChoice = userAnswers[currentQuestionIndex];
+
+        question.options.forEach((option, index) => {
+          const displayLetter = DISPLAY_LETTERS[index];
+          const isSelected = previousChoice === option.type;
+
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('role', 'radio');
+          btn.setAttribute('aria-checked', isSelected ? 'true' : 'false');
+
+          btn.className = [
+            'w-full text-right p-4 sm:p-5 rounded-2xl border-2 transition-all duration-200',
+            'flex items-start gap-3.5 group cursor-pointer active:scale-[0.98]',
+            isSelected
+              ? 'border-blue-600 bg-blue-50/85 shadow-md shadow-blue-500/10'
+              : 'border-slate-200/90 bg-white hover:border-blue-400 hover:bg-blue-50/40 hover:shadow-sm'
+          ].join(' ');
+
+          const badge = document.createElement('span');
+          badge.className = [
+            'w-9 h-9 shrink-0 rounded-xl font-extrabold text-sm sm:text-base flex items-center justify-center transition-colors duration-200 mt-0.5',
+            isSelected
+              ? 'bg-blue-600 text-white'
+              : 'bg-slate-100 text-slate-700 group-hover:bg-blue-600 group-hover:text-white'
+          ].join(' ');
+          badge.textContent = displayLetter;
+
+          const textSpan = document.createElement('span');
+          textSpan.className = 'text-sm sm:text-base font-bold text-slate-800 leading-relaxed flex-1';
+          textSpan.textContent = option.text;
+
+          btn.appendChild(badge);
+          btn.appendChild(textSpan);
+
+          btn.addEventListener('click', () => handleOptionSelect(option.type, btn, badge));
+          optionsListEl.appendChild(btn);
+        });
+      }
+
+      /**
+       * معالجة اختيار المستخدم لإجابة والانتقال السلس للسؤال التالي
+       */
+      function handleOptionSelect(selectedType, clickedBtn, badgeEl) {
+        if (isTransitioning) return;
+        isTransitioning = true;
+
+        userAnswers[currentQuestionIndex] = selectedType;
+
+        // إبراز الزر المختار بصرياً قبل الانتقال
+        const allButtons = optionsListEl.querySelectorAll('button');
+        allButtons.forEach((b) => {
+          b.classList.remove('border-blue-600', 'bg-blue-50/85', 'shadow-md');
+          b.classList.add('border-slate-200/90', 'bg-white');
+        });
+        clickedBtn.classList.remove('border-slate-200/90', 'bg-white');
+        clickedBtn.classList.add('border-blue-600', 'bg-blue-50/90', 'shadow-md', 'shadow-blue-500/15');
+        badgeEl.classList.remove('bg-slate-100', 'text-slate-700');
+        badgeEl.classList.add('bg-blue-600', 'text-white');
+
+        setTimeout(() => {
+          questionContainerEl.classList.remove('animate-fade-slide-up');
+          questionContainerEl.classList.add('animate-fade-out');
+
+          setTimeout(() => {
+            if (currentQuestionIndex < shuffledQuestions.length - 1) {
+              currentQuestionIndex++;
+              renderQuestion();
+              isTransitioning = false;
+            } else {
+              showAnalyzingThenResult();
+            }
+          }, 210);
+        }, 220);
+      }
+
+      /**
+       * الرجوع للسؤال السابق
+       */
+      function goToPreviousQuestion() {
+        if (isTransitioning || currentQuestionIndex <= 0) return;
+        currentQuestionIndex--;
+        renderQuestion();
+      }
+
+      // ---------------------------------------------------------
+      // 7. حساب النتيجة وعرضها
+      // ---------------------------------------------------------
+
+      /**
+       * حساب أكثر حرف اختاره المستخدم (أ، ب، ج، د) مع كسر التعادل بذكاء
+       */
+      function calculateResult() {
+        const counts = { 'أ': 0, 'ب': 0, 'ج': 0, 'د': 0 };
+
+        userAnswers.forEach((ans) => {
+          if (ans && Object.prototype.hasOwnProperty.call(counts, ans)) {
+            counts[ans]++;
+          }
+        });
+
+        let maxCount = -1;
+        let topTypes = [];
+
+        Object.keys(counts).forEach((key) => {
+          if (counts[key] > maxCount) {
+            maxCount = counts[key];
+            topTypes = [key];
+          } else if (counts[key] === maxCount) {
+            topTypes.push(key);
+          }
+        });
+
+        let winnerKey = topTypes[0];
+        if (topTypes.length > 1) {
+          // في حالة التعادل، نرجح آخر اختيار حاسم ضمن الشخصيات المتعادلة
+          for (let i = userAnswers.length - 1; i >= 0; i--) {
+            if (topTypes.includes(userAnswers[i])) {
+              winnerKey = userAnswers[i];
+              break;
+            }
+          }
+        }
+
+        return {
+          result: QUIZ_RESULTS[winnerKey],
+          counts: counts
+        };
+      }
+
+      /**
+       * إظهار شاشة التحليل السريع ثم الانتقال لشاشة النتيجة
+       */
+      function showAnalyzingThenResult() {
+        quizScreen.classList.add('hidden');
+        analyzingScreen.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        setTimeout(() => {
+          analyzingScreen.classList.add('hidden');
+          renderResult();
+          isTransitioning = false;
+        }, 750);
+      }
+
+      /**
+       * عرض شاشة النتيجة وتوزيع النسب وإطلاق الاحتفال
+       */
+      function renderResult() {
+        try {
+          const { result, counts } = calculateResult();
+          currentResult = result;
+
+          resultHeaderEl.className = `p-6 sm:p-8 text-center text-white bg-gradient-to-br ${result.headerGradient} relative overflow-hidden`;
+          resultEmojiEl.textContent = result.emoji;
+          resultTitleEl.textContent = result.title;
+          resultSubtitleEl.textContent = result.subtitle;
+          resultDescriptionEl.textContent = result.description;
+          resultTipEl.textContent = result.tip;
+
+          // بناء أشرطة توزيع الشخصيات الأربع
+          traitsBreakdownEl.innerHTML = '';
+          const total = QUIZ_QUESTIONS.length;
+          const sortedKeys = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
+
+          sortedKeys.forEach((key) => {
+            const meta = QUIZ_RESULTS[key];
+            const pct = Math.round((counts[key] / total) * 100);
+
+            const row = document.createElement('div');
+            row.className = 'space-y-1.5';
+            row.innerHTML = `
+              <div class="flex items-center justify-between text-xs sm:text-sm font-bold">
+                <span class="text-slate-700">${meta.shortLabel}</span>
+                <span class="font-brand text-slate-600">${pct}%</span>
+              </div>
+              <div class="w-full h-2.5 bg-slate-100 rounded-full overflow-hidden">
+                <div class="h-full rounded-full ${meta.barColor} transition-all duration-700 ease-out" style="width: ${pct}%;"></div>
+              </div>
+            `;
+            traitsBreakdownEl.appendChild(row);
+          });
+
+          resultScreen.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+
+          launchConfetti();
+        } catch (err) {
+          console.error('Error rendering result:', err);
+          showToast('حدثت مشكلة أثناء عرض النتيجة، جرب مرة أخرى.', '⚠️');
+        }
+      }
+
+      // ---------------------------------------------------------
+      // 8. أزرار المشاركة الفورية (واتساب وفيسبوك)
+      // ---------------------------------------------------------
+
+      /**
+       * فتح واتساب برسالة النتيجة الجاهزة ورابط الصفحة
+       */
+      function handleWhatsAppShare() {
+        if (!currentResult) return;
+        try {
+          const text = buildShareText(currentResult);
+          const whatsappUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+          window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+        } catch (err) {
+          console.error('WhatsApp share error:', err);
+          showToast('تعذر فتح واتساب، يمكنك نسخ النتيجة بدلاً من ذلك.', '⚠️');
+        }
+      }
+
+      /**
+       * نسخ النتيجة والرابط للحافظة فوراً لنشرها على فيسبوك
+       */
+      function handleFacebookCopy() {
+        if (!currentResult) return;
+        const text = buildShareText(currentResult);
+        const copied = copyTextToClipboard(text);
+
+        if (copied) {
+          showToast('تم نسخ النتيجة والرابط بنجاح! الصقهم الآن في بوست على فيسبوك 🎉', '📋');
+        } else {
+          showToast('لم نتمكن من النسخ تلقائياً، جرب مرة أخرى.', '⚠️');
+        }
+      }
+
+      // ---------------------------------------------------------
+      // 9. تأثير القصاصات الاحتفالية المتجاوب (Responsive Confetti)
+      // ---------------------------------------------------------
+      function launchConfetti() {
+        try {
+          const ctx = confettiCanvas.getContext('2d');
+          if (!ctx) return;
+
+          confettiCanvas.classList.remove('hidden');
+
+          function resizeCanvas() {
+            confettiCanvas.width = window.innerWidth;
+            confettiCanvas.height = window.innerHeight;
+          }
+          resizeCanvas();
+
+          const colors = ['#2563EB', '#F97316', '#10B981', '#9333EA', '#F59E0B', '#0EA5E9'];
+          const particles = Array.from({ length: 80 }, () => ({
+            x: Math.random() * confettiCanvas.width,
+            y: Math.random() * -confettiCanvas.height * 0.6,
+            w: Math.random() * 8 + 5,
+            h: Math.random() * 5 + 4,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            vx: (Math.random() - 0.5) * 3.2,
+            vy: Math.random() * 3.5 + 2.5,
+            rot: Math.random() * Math.PI * 2,
+            vRot: (Math.random() - 0.5) * 0.16,
+            opacity: 1
+          }));
+
+          const startTime = Date.now();
+          const duration = 2800;
+
+          window.addEventListener('resize', resizeCanvas);
+
+          function animate() {
+            const elapsed = Date.now() - startTime;
+            ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+
+            particles.forEach((p) => {
+              p.x += p.vx;
+              p.y += p.vy;
+              p.rot += p.vRot;
+
+              if (elapsed > duration * 0.65) {
+                p.opacity = Math.max(0, 1 - (elapsed - duration * 0.65) / (duration * 0.35));
+              }
+
+              ctx.save();
+              ctx.globalAlpha = p.opacity;
+              ctx.translate(p.x, p.y);
+              ctx.rotate(p.rot);
+              ctx.fillStyle = p.color;
+              ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+              ctx.restore();
+            });
+
+            if (elapsed < duration) {
+              requestAnimationFrame(animate);
+            } else {
+              ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+              confettiCanvas.classList.add('hidden');
+              window.removeEventListener('resize', resizeCanvas);
+            }
+          }
+
+          requestAnimationFrame(animate);
+        } catch (err) {
+          console.error('Confetti error:', err);
+        }
+      }
+
+      // ---------------------------------------------------------
+      // 10. ربط الأحداث الرئيسية
+      // ---------------------------------------------------------
+      startQuizBtn.addEventListener('click', startQuiz);
+      prevBtn.addEventListener('click', goToPreviousQuestion);
+      retakeQuizBtn.addEventListener('click', startQuiz);
+      whatsappShareBtn.addEventListener('click', handleWhatsAppShare);
+      facebookCopyBtn.addEventListener('click', handleFacebookCopy);
+    })();
+  </script>
+</body>
+</html>
+```
